@@ -51,6 +51,34 @@
 
 ---
 
+## アプリケーションの起動方法
+
+### 前提条件
+
+- JDK 17 がインストールされていること
+- Docker がインストールされていること
+
+### 起動手順
+
+```bash
+# 1. リポジトリをクローン
+git clone https://github.com/hazuzuki/book-api.git
+cd book-api
+
+# 2. Docker ComposeによるPostgresqlコンテナ起動
+docker compose up -d
+
+# 3. FlyWayによるマイグレーション実行
+./gradlew flywayMigrate
+
+# 4. JOOQによる自動コード生成
+./gradlew generateJooq
+
+# 5. アプリケーションの起動
+./gradlew bootRun
+```
+---
+
 ## テスト
 
 - Service層とController層のユニットテストを実装済み
